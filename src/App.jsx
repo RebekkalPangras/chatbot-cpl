@@ -10,8 +10,7 @@ import { ChatContext } from "./utils/context/Chat.js";
 function App() {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([
-    { id: 1, type: "user", val: "Hi" },
-    { id: 2, type: "bot", val: "How can i help you ?" },
+    { id: 1, type: "bot", val: "How can i help you ?" },
   ]);
   return (
     <ChatContext.Provider value={{ chat, setChat }}>
