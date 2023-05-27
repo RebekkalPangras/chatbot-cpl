@@ -1,0 +1,8 @@
+.containerNavbar {
+  display: flex;
+  justify-content: flex-start;
+  width: 100vw;
+}
+.logo {
+  margin: 20px;
+}

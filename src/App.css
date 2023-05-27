@@ -1,0 +1,31 @@
+.discussion {
+  width: 100vw;
+  height: 85vh;
+}
+.messageDiscussionUser {
+  display: flex;
+  width: 100vw;
+  height: fit-content;
+  align-items: center;
+}
+.messageDiscussionBot {
+  display: flex;
+  width: 100vw;
+  height: fit-content;
+  align-items: center;
+  justify-content: flex-end;
+}
+.avatarContainer {
+  margin-right: 10px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+.messageContainer {
+  display: flex;
+  align-items: center;
+}
+.inputContainerGlobal {
+  display: flex;
+  justify-content: center;
+}
