@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useContext } from "react";
+import Avatar from "./components/avatar/Avatar.jsx";
+import Input from "./components/input/Input.jsx";
+import Text from "./components/text/Text.jsx";
+import Button from "./components/button/Button.jsx";
+import Navbar from "./components/navbar/Navbar.jsx";
+import "./App.css";
+import { ChatContext } from "./utils/context/Chat.js";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [message, setMessage] = useState("");
+  const chat = useContext(ChatContext);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Navbar />
+      <div className="discussion">
+        {chat.map((message) => {
+          return (
+            <div key={message.id}>
+              {message.type === "bot" ? (
+                <div key={message.id} className="messageDiscussionBot">
+                  <div className="messageContainer">
+                    <Text
+                      message={message.val}
+                      nameUser={message.type}
+                      isBot={message.type === "bot"}
+                    />
+                  </div>
+                  <div className="avatarContainer">
+                    <Avatar isBot={message.type === "bot"} />
+                  </div>
+                </div>
+              ) : (
+                <div key={message.id} className="messageDiscussionUser">
+                  <div className="avatarContainer">
+                    <Avatar isBot={message.type === "bot"} />
+                  </div>
+                  <div className="messageContainer">
+                    <Text
+                      message={message.val}
+                      nameUser={message.type}
+                      isBot={message.type === "bot"}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="inputContainerGlobal">
+        <Input message={message} setMessage={setMessage} />
+        <Button message={message} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
