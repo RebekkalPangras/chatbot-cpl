@@ -9,9 +9,12 @@ import { ChatContext } from "./utils/context/Chat.js";
 
 function App() {
   const [message, setMessage] = useState("");
-  const chat = useContext(ChatContext);
+  const [chat, setChat] = useState([
+    { id: 1, type: "user", val: "Hi" },
+    { id: 2, type: "bot", val: "How can i help you ?" },
+  ]);
   return (
-    <>
+    <ChatContext.Provider value={{ chat, setChat }}>
       <Navbar />
       <div className="discussion">
         {chat.map((message) => {
@@ -50,9 +53,14 @@ function App() {
       </div>
       <div className="inputContainerGlobal">
         <Input message={message} setMessage={setMessage} />
-        <Button message={message} />
+        <Button
+          message={message}
+          chat={chat}
+          setChat={setChat}
+          setMessage={setMessage}
+        />
       </div>
-    </>
+    </ChatContext.Provider>
   );
 }
 

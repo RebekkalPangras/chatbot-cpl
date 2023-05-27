@@ -3,16 +3,13 @@ import { useContext } from "react";
 import "./Button.css";
 import PropTypes from "prop-types";
 
-function Button({ message }) {
-  const chat = useContext(ChatContext);
+function Button({ message, chat, setChat, setMessage }) {
+  //const { chat, setChat } = useContext(ChatContext);
   function handleClick() {
-    chat.push({ id: chat.length + 1, type: "user", val: message });
-    console.log('{ id: chat.length + 1, type: "user", val: message }', {
-      id: chat.length + 1,
-      type: "user",
-      val: message,
-    });
-    console.log("chat", chat);
+    const tempChat = chat;
+    tempChat.push({ id: chat.length + 1, type: "user", val: message });
+    setChat(tempChat);
+    setMessage("");
   }
 
   return (
@@ -31,6 +28,7 @@ Button.propTypes = {
   message: PropTypes.string,
   setChat: PropTypes.func,
   chat: PropTypes.array,
+  setMessage: PropTypes.func,
 };
 
 export default Button;
