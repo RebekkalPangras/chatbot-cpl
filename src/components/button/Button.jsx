@@ -1,6 +1,6 @@
 import "./Button.css";
 import PropTypes from "prop-types";
-import Fetch from "../../utils/fetch/Fetch.js";
+import { Fetch } from "../../utils/fetch/Fetch.js";
 
 function Button({ message, chat, setChat, setMessage }) {
   function handleClick() {
